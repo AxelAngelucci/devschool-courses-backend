@@ -23,6 +23,9 @@ let CourseController = class CourseController {
     postCourse(payload) {
         return this.courseService.postCourse(payload);
     }
+    addModuleToCourse(id, payload) {
+        return this.courseService.createModuleInCourse(id, payload);
+    }
     getAllCourses() {
         return this.courseService.getAllCourses();
     }
@@ -40,6 +43,14 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)
 ], CourseController.prototype, "postCourse", null);
+__decorate([
+    (0, common_1.Post)(':id/sections'),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:returntype", void 0)
+], CourseController.prototype, "addModuleToCourse", null);
 __decorate([
     (0, common_1.Get)(),
     __metadata("design:type", Function),

@@ -38,4 +38,7 @@ export declare class CourseService {
     }, never>>;
     deleteCourse(id: any): Promise<import("mongodb").DeleteResult>;
     patchCourse(id: any, payload: any): Promise<import("mongoose").UpdateWriteOpResult>;
+    createModuleInCourse(id: any, payload: any): Promise<import("mongoose").Document<unknown, {}, CourseDocument> & Omit<Course & import("mongoose").Document<any, any, any> & {
+        _id: import("mongoose").Types.ObjectId;
+    }, never>>;
 }

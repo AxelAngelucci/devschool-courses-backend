@@ -1,4 +1,12 @@
-import { Controller, Post, Body, Get, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  Get,
+  Param,
+  Delete,
+  Put,
+} from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { CourseService } from './courses.service';
 
@@ -10,6 +18,12 @@ export class CourseController {
   postCourse(@Body() payload) {
     return this.courseService.postCourse(payload);
   }
+
+  @Post(':id/sections')
+  addModuleToCourse(@Param('id') id, @Body() payload) {
+    return this.courseService.createModuleInCourse(id, payload);
+  }
+
   @Get()
   getAllCourses() {
     return this.courseService.getAllCourses();

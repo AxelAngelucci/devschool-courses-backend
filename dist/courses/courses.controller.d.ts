@@ -30,6 +30,9 @@ export declare class CourseController {
     postCourse(payload: any): Promise<import("mongoose").Document<unknown, {}, import("./schema/courses.schema").CourseDocument> & Omit<import("./schema/courses.schema").Course & import("mongoose").Document<any, any, any> & {
         _id: import("mongoose").Types.ObjectId;
     }, never>>;
+    addModuleToCourse(id: any, payload: any): Promise<import("mongoose").Document<unknown, {}, import("./schema/courses.schema").CourseDocument> & Omit<import("./schema/courses.schema").Course & import("mongoose").Document<any, any, any> & {
+        _id: import("mongoose").Types.ObjectId;
+    }, never>>;
     getAllCourses(): Promise<(import("mongoose").Document<unknown, {}, import("./schema/courses.schema").CourseDocument> & Omit<import("./schema/courses.schema").Course & import("mongoose").Document<any, any, any> & {
         _id: import("mongoose").Types.ObjectId;
     }, never>)[]>;

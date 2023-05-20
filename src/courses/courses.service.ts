@@ -31,4 +31,17 @@ export class CourseService {
   async patchCourse(id, payload) {
     return this.courseModel.updateOne({ _id: id }, payload);
   }
+
+  async createModuleInCourse(id, payload) {
+    const course = await this.courseModel.findById(id);
+    if (!course) throw new HttpException('No hay ningún curso con ese ID', 404);
+    const { modules } = course;
+    console.log(payload);
+    const newModules = [...modules, payload];
+    const updatedCourse = await this.courseModel.findOneAndUpdate(
+      { _id: id },
+      { modules: newModules },
+    );
+    return updatedCourse;
+  }
 }

@@ -11,6 +11,36 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CourseSchema = exports.Course = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
+let ClassSchemma = class ClassSchemma {
+};
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], ClassSchemma.prototype, "name", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], ClassSchemma.prototype, "link", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ required: true, default: false }),
+    __metadata("design:type", Boolean)
+], ClassSchemma.prototype, "isFree", void 0);
+ClassSchemma = __decorate([
+    (0, mongoose_1.Schema)()
+], ClassSchemma);
+let ModuleSchema = class ModuleSchema {
+};
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], ModuleSchema.prototype, "moduleName", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", Array)
+], ModuleSchema.prototype, "classes", void 0);
+ModuleSchema = __decorate([
+    (0, mongoose_1.Schema)()
+], ModuleSchema);
 let Course = class Course {
 };
 __decorate([
@@ -20,13 +50,25 @@ __decorate([
 __decorate([
     (0, mongoose_1.Prop)({ required: true }),
     __metadata("design:type", String)
+], Course.prototype, "subName", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ required: true }),
+    __metadata("design:type", String)
 ], Course.prototype, "description", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ required: false }),
+    __metadata("design:type", String)
+], Course.prototype, "bigDescription", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ required: false }),
+    __metadata("design:type", String)
+], Course.prototype, "requirements", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ required: true }),
     __metadata("design:type", String)
 ], Course.prototype, "image", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ required: true }),
+    (0, mongoose_1.Prop)({ required: false }),
     __metadata("design:type", String)
 ], Course.prototype, "professorName", void 0);
 __decorate([
@@ -41,6 +83,30 @@ __decorate([
     (0, mongoose_1.Prop)({ required: true, default: true }),
     __metadata("design:type", Boolean)
 ], Course.prototype, "active", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", Number)
+], Course.prototype, "oldPrice", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ required: true }),
+    __metadata("design:type", Number)
+], Course.prototype, "price", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ required: false }),
+    __metadata("design:type", String)
+], Course.prototype, "banner", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ required: false }),
+    __metadata("design:type", Number)
+], Course.prototype, "score", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ required: false }),
+    __metadata("design:type", Number)
+], Course.prototype, "clients", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", Array)
+], Course.prototype, "modules", void 0);
 Course = __decorate([
     (0, mongoose_1.Schema)()
 ], Course);
