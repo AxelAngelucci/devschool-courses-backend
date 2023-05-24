@@ -31,11 +31,11 @@ ClassSchemma = __decorate([
 let ModuleSchema = class ModuleSchema {
 };
 __decorate([
-    (0, mongoose_1.Prop)(),
+    (0, mongoose_1.Prop)({ required: true }),
     __metadata("design:type", String)
 ], ModuleSchema.prototype, "moduleName", void 0);
 __decorate([
-    (0, mongoose_1.Prop)(),
+    (0, mongoose_1.Prop)({ required: true }),
     __metadata("design:type", Array)
 ], ModuleSchema.prototype, "classes", void 0);
 ModuleSchema = __decorate([

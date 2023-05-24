@@ -14,9 +14,9 @@ class ClassSchemma {
 }
 @Schema()
 class ModuleSchema {
-  @Prop()
+  @Prop({ required: true })
   moduleName: string;
-  @Prop()
+  @Prop({ required: true })
   classes: [ClassSchemma];
 }
 

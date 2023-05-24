@@ -46,7 +46,10 @@ let CourseService = class CourseService {
         const { modules } = course;
         console.log(payload);
         const newModules = [...modules, payload];
-        const updatedCourse = await this.courseModel.findOneAndUpdate({ _id: id }, { modules: newModules });
+        if (!payload.moduleName || !payload.classes)
+            throw new common_1.HttpException('moduleName y classes son requeridos', 400);
+        await this.courseModel.findOneAndUpdate({ _id: id }, { modules: newModules });
+        const updatedCourse = await this.courseModel.findById(id);
         return updatedCourse;
     }
 };
