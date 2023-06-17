@@ -35,4 +35,52 @@ export class AuthService {
     };
     return data;
   }
+
+  async getUserByID(id) {
+    const user = await this.authModel.findOne({ _id: id });
+    if (!user)
+      throw new HttpException(
+        'Usuario no encontrado PD: chema se la comeeeeee',
+        404,
+      );
+    return user;
+  }
+
+  async getAllUsers() {
+    return this.authModel.find();
+  }
+
+  async putUserByID(id, payload) {
+    const user = await this.authModel.findOne({ _id: id });
+    if (!user)
+      throw new HttpException(
+        'Usuario no encontrado PD: chema se la comeeeeee',
+        404,
+      );
+    try {
+      await this.authModel.updateOne({ _id: id }, payload);
+      const updatedUser = await this.authModel.findOne({ _id: id });
+      return updatedUser;
+    } catch (error) {
+      throw new HttpException('Internal Server Error', 500);
+    }
+  }
+
+  async changePassword(id, payload) {
+    const user = await this.authModel.findOne({ _id: id });
+    if (!user)
+      throw new HttpException(
+        'Usuario no encontrado PD: chema se la comeeeeee',
+        404,
+      );
+    try {
+      const checkPassword = await compare(payload.password, user.password);
+      if (!checkPassword) throw new HttpException('Contraseña incorrecta', 404);
+      await this.authModel.updateOne({ _id: id }, payload);
+      const updatedUser = await this.authModel.findOne({ _id: id });
+      return updatedUser;
+    } catch (error) {
+      throw new HttpException('Internal server error', 500);
+    }
+  }
 }

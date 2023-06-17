@@ -38,4 +38,16 @@ export declare class AuthController {
         }, never>;
         token: string;
     }>;
+    getUserByID(id: any): Promise<import("mongoose").Document<unknown, {}, import("./schema/auth.schema").AuthDocument> & Omit<import("./schema/auth.schema").Auth & import("mongoose").Document<any, any, any> & {
+        _id: import("mongoose").Types.ObjectId;
+    }, never>>;
+    getAllUsers(): Promise<(import("mongoose").Document<unknown, {}, import("./schema/auth.schema").AuthDocument> & Omit<import("./schema/auth.schema").Auth & import("mongoose").Document<any, any, any> & {
+        _id: import("mongoose").Types.ObjectId;
+    }, never>)[]>;
+    changePassword(id: any, payload: any): Promise<import("mongoose").Document<unknown, {}, import("./schema/auth.schema").AuthDocument> & Omit<import("./schema/auth.schema").Auth & import("mongoose").Document<any, any, any> & {
+        _id: import("mongoose").Types.ObjectId;
+    }, never>>;
+    editUserByID(id: any, payload: any): Promise<import("mongoose").Document<unknown, {}, import("./schema/auth.schema").AuthDocument> & Omit<import("./schema/auth.schema").Auth & import("mongoose").Document<any, any, any> & {
+        _id: import("mongoose").Types.ObjectId;
+    }, never>>;
 }

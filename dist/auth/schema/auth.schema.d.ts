@@ -32,6 +32,10 @@ export declare class Auth {
     country: string;
     password: string;
     active: boolean;
+    proffesion: string;
+    linkedin: string;
+    github: string;
+    description: string;
 }
 export declare const AuthSchema: import("mongoose").Schema<Auth, import("mongoose").Model<Auth, any, any, any, Document<unknown, any, Auth> & Omit<Auth & {
     _id: import("mongoose").Types.ObjectId;

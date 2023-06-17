@@ -45,6 +45,44 @@ let AuthService = class AuthService {
         };
         return data;
     }
+    async getUserByID(id) {
+        const user = await this.authModel.findOne({ _id: id });
+        if (!user)
+            throw new common_1.HttpException('Usuario no encontrado PD: chema se la comeeeeee', 404);
+        return user;
+    }
+    async getAllUsers() {
+        return this.authModel.find();
+    }
+    async putUserByID(id, payload) {
+        const user = await this.authModel.findOne({ _id: id });
+        if (!user)
+            throw new common_1.HttpException('Usuario no encontrado PD: chema se la comeeeeee', 404);
+        try {
+            await this.authModel.updateOne({ _id: id }, payload);
+            const updatedUser = await this.authModel.findOne({ _id: id });
+            return updatedUser;
+        }
+        catch (error) {
+            throw new common_1.HttpException('Internal Server Error', 500);
+        }
+    }
+    async changePassword(id, payload) {
+        const user = await this.authModel.findOne({ _id: id });
+        if (!user)
+            throw new common_1.HttpException('Usuario no encontrado PD: chema se la comeeeeee', 404);
+        try {
+            const checkPassword = await (0, bcrypt_1.compare)(payload.password, user.password);
+            if (!checkPassword)
+                throw new common_1.HttpException('Contraseña incorrecta', 404);
+            await this.authModel.updateOne({ _id: id }, payload);
+            const updatedUser = await this.authModel.findOne({ _id: id });
+            return updatedUser;
+        }
+        catch (error) {
+            throw new common_1.HttpException('Internal server error', 500);
+        }
+    }
 };
 AuthService = __decorate([
     (0, common_1.Injectable)(),

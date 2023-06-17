@@ -40,4 +40,16 @@ export declare class AuthService {
         }, never>;
         token: string;
     }>;
+    getUserByID(id: any): Promise<import("mongoose").Document<unknown, {}, AuthDocument> & Omit<Auth & import("mongoose").Document<any, any, any> & {
+        _id: import("mongoose").Types.ObjectId;
+    }, never>>;
+    getAllUsers(): Promise<(import("mongoose").Document<unknown, {}, AuthDocument> & Omit<Auth & import("mongoose").Document<any, any, any> & {
+        _id: import("mongoose").Types.ObjectId;
+    }, never>)[]>;
+    putUserByID(id: any, payload: any): Promise<import("mongoose").Document<unknown, {}, AuthDocument> & Omit<Auth & import("mongoose").Document<any, any, any> & {
+        _id: import("mongoose").Types.ObjectId;
+    }, never>>;
+    changePassword(id: any, payload: any): Promise<import("mongoose").Document<unknown, {}, AuthDocument> & Omit<Auth & import("mongoose").Document<any, any, any> & {
+        _id: import("mongoose").Types.ObjectId;
+    }, never>>;
 }

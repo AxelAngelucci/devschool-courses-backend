@@ -25,6 +25,18 @@ export class Auth {
 
   @Prop({ required: true, default: false })
   active: boolean;
+
+  @Prop({ required: false })
+  proffesion: string;
+
+  @Prop({ required: false })
+  linkedin: string;
+
+  @Prop({ required: false })
+  github: string;
+
+  @Prop({ required: false })
+  description: string;
 }
 
 export const AuthSchema = SchemaFactory.createForClass(Auth);
