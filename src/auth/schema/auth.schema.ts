@@ -37,6 +37,12 @@ export class Auth {
 
   @Prop({ required: false })
   description: string;
+
+  @Prop({ required: false })
+  avatar: string;
+
+  @Prop({ required: false })
+  timezone: string;
 }
 
 export const AuthSchema = SchemaFactory.createForClass(Auth);

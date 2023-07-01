@@ -16,7 +16,12 @@ export class AuthService {
   async register(payload: RegisterAuthDto) {
     const { password } = payload;
     const hashPwd = await hash(password, 10);
-    payload = { ...payload, password: hashPwd };
+    payload = {
+      ...payload,
+      password: hashPwd,
+      avatar:
+        'https://cdn.dribbble.com/users/1162077/screenshots/7495197/media/92507bdcf4b5edfa12d5e9cc4f01b301.png',
+    };
     return this.authModel.create(payload);
   }
 

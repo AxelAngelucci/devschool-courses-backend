@@ -8,4 +8,7 @@ export class RegisterAuthDto extends PartialType(LoginAuthDto) {
 
   @IsPhoneNumber()
   phone: number;
+
+  @IsNotEmpty()
+  avatar: string;
 }
