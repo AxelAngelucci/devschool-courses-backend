@@ -19,8 +19,10 @@ const auth_schema_1 = require("./schema/auth.schema");
 const mongoose_2 = require("mongoose");
 const bcrypt_1 = require("bcrypt");
 const jwt_1 = require("@nestjs/jwt");
-const hashp = (p, n) => {
-    return (0, bcrypt_1.hash)(p, n);
+const hashp = async (p, n) => {
+    const hashed = await (0, bcrypt_1.hash)(p, n);
+    console.log(hashed);
+    return hashed;
 };
 let AuthService = class AuthService {
     constructor(authModel, jwtService) {
@@ -74,18 +76,14 @@ let AuthService = class AuthService {
         const user = await this.authModel.findOne({ _id: id });
         if (!user)
             throw new common_1.HttpException('Usuario no encontrado PD: chema se la comeeeeee', 404);
-        try {
-            const checkPassword = await (0, bcrypt_1.compare)(payload.password, user.password);
-            if (!checkPassword)
-                throw new common_1.HttpException('Contraseña incorrecta', 404);
-            const hash = await hashp(payload.newPassword, 10);
-            await this.authModel.updateOne({ _id: id }, { password: hash });
-            const updatedUser = await this.authModel.findOne({ _id: id });
-            return updatedUser;
-        }
-        catch (error) {
-            throw new common_1.HttpException('Internal server error', 500);
-        }
+        const checkPassword = await (0, bcrypt_1.compare)(payload.password, user.password);
+        if (!checkPassword)
+            throw new common_1.HttpException('Contraseña incorrecta', 403);
+        console.log(checkPassword);
+        const hash = await hashp(payload.newPassword, 10);
+        await this.authModel.updateOne({ _id: id }, { password: hash });
+        const updatedUser = await this.authModel.findOne({ _id: id });
+        return updatedUser;
     }
 };
 AuthService = __decorate([

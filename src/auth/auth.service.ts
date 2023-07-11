@@ -7,8 +7,10 @@ import { hash, compare } from 'bcrypt';
 import { LoginAuthDto } from './dto/login-auth.dto';
 import { JwtService } from '@nestjs/jwt';
 
-const hashp = (p: string, n: number) => {
-  return hash(p, n);
+const hashp = async (p: string, n: number) => {
+  const hashed = await hash(p, n);
+  console.log(hashed);
+  return hashed;
 };
 @Injectable()
 export class AuthService {
@@ -77,21 +79,17 @@ export class AuthService {
 
   async changePassword(id, payload) {
     const user = await this.authModel.findOne({ _id: id });
-
     if (!user)
       throw new HttpException(
         'Usuario no encontrado PD: chema se la comeeeeee',
         404,
       );
-    try {
-      const checkPassword = await compare(payload.password, user.password);
-      if (!checkPassword) throw new HttpException('Contraseña incorrecta', 404);
-      const hash = await hashp(payload.newPassword, 10);
-      await this.authModel.updateOne({ _id: id }, { password: hash });
-      const updatedUser = await this.authModel.findOne({ _id: id });
-      return updatedUser;
-    } catch (error) {
-      throw new HttpException('Internal server error', 500);
-    }
+    const checkPassword = await compare(payload.password, user.password);
+    if (!checkPassword) throw new HttpException('Contraseña incorrecta', 403);
+    console.log(checkPassword);
+    const hash = await hashp(payload.newPassword, 10);
+    await this.authModel.updateOne({ _id: id }, { password: hash });
+    const updatedUser = await this.authModel.findOne({ _id: id });
+    return updatedUser;
   }
 }
