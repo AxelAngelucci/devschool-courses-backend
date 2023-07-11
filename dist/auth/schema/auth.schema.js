@@ -57,6 +57,14 @@ __decorate([
     (0, mongoose_1.Prop)({ required: false }),
     __metadata("design:type", String)
 ], Auth.prototype, "description", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ required: false }),
+    __metadata("design:type", String)
+], Auth.prototype, "avatar", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ required: false }),
+    __metadata("design:type", String)
+], Auth.prototype, "timezone", void 0);
 Auth = __decorate([
     (0, mongoose_1.Schema)()
 ], Auth);

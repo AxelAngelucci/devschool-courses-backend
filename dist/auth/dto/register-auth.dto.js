@@ -23,5 +23,9 @@ __decorate([
     (0, class_validator_1.IsPhoneNumber)(),
     __metadata("design:type", Number)
 ], RegisterAuthDto.prototype, "phone", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], RegisterAuthDto.prototype, "avatar", void 0);
 exports.RegisterAuthDto = RegisterAuthDto;
 //# sourceMappingURL=register-auth.dto.js.map

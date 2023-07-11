@@ -6,6 +6,10 @@ import { RegisterAuthDto } from './dto/register-auth.dto';
 import { hash, compare } from 'bcrypt';
 import { LoginAuthDto } from './dto/login-auth.dto';
 import { JwtService } from '@nestjs/jwt';
+
+const hashp = (p: string, n: number) => {
+  return hash(p, n);
+};
 @Injectable()
 export class AuthService {
   constructor(
@@ -73,6 +77,7 @@ export class AuthService {
 
   async changePassword(id, payload) {
     const user = await this.authModel.findOne({ _id: id });
+
     if (!user)
       throw new HttpException(
         'Usuario no encontrado PD: chema se la comeeeeee',
@@ -81,7 +86,8 @@ export class AuthService {
     try {
       const checkPassword = await compare(payload.password, user.password);
       if (!checkPassword) throw new HttpException('Contraseña incorrecta', 404);
-      await this.authModel.updateOne({ _id: id }, payload);
+      const hash = await hashp(payload.newPassword, 10);
+      await this.authModel.updateOne({ _id: id }, { password: hash });
       const updatedUser = await this.authModel.findOne({ _id: id });
       return updatedUser;
     } catch (error) {

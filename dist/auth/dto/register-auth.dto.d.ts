@@ -3,5 +3,6 @@ declare const RegisterAuthDto_base: import("@nestjs/common").Type<Partial<LoginA
 export declare class RegisterAuthDto extends RegisterAuthDto_base {
     name: string;
     phone: number;
+    avatar: string;
 }
 export {};
